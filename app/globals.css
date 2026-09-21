@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050506;
+  --surface-1: #0c0c0e;
+  --surface-2: #121214;
+  --surface-3: #1a1a1e;
+  --border: rgb(255 255 255 / 0.08);
+  --foreground: #f4f4f5;
+  --muted: #a1a1aa;
+  --muted-foreground: #71717a;
+  --accent: #22d3ee;
+  --accent-foreground: #041016;
+  --tier-high: #34d399;
+  --tier-mid: #fbbf24;
+  --tier-least: #94a3b8;
+  --ring: #22d3ee;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-tier-high: var(--tier-high);
+  --color-tier-mid: var(--tier-mid);
+  --color-tier-least: var(--tier-least);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Custom dark scrollbars app-wide */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0c0c0e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) #0c0c0e;
+}
+
+.maplibregl-map {
+  font: inherit;
+}
+
+.maplibregl-ctrl-attrib {
+  background: rgb(12 12 14 / 0.72) !important;
+  color: var(--muted-foreground);
+}
+
+.maplibregl-ctrl-attrib a {
+  color: var(--muted);
+}
+
+.footprint-dot {
+  position: relative;
+  display: block;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 70%, transparent);
+  cursor: pointer;
+}
+
+.footprint-dot-hub {
+  width: 12px;
+  height: 12px;
+}
+
+.footprint-dot-sat {
+  width: 7px;
+  height: 7px;
+  opacity: 0.72;
+}
+
+.footprint-dot::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+  animation: footprint-pulse 2.8s ease-in-out infinite;
+}
+
+.footprint-dot-static::after {
+  animation: none;
+  opacity: 0.35;
+}
+
+.footprint-dot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@keyframes footprint-pulse {
+  0%,
+  100% {
+    transform: scale(0.65);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.7);
+    opacity: 0.08;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footprint-dot::after {
+    animation: none;
+  }
+}

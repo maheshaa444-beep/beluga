@@ -1,0 +1,11 @@
+# Prospect Map
+
+- Black theme only: `#050506` background, three surfaces, hairline `rgba(255,255,255,0.08)` borders.
+- One accent: electric cyan, used sparingly. Tiers: High emerald, Mid amber, Least slate.
+- Inter for UI. Mono (JetBrains Mono) for numbers and scores.
+- Design tokens live in `app/globals.css`. Do not invent one-off colors in features.
+- LLM access only via `/lib/llm`. Never call model APIs from UI or route handlers.
+- AI matching and research run as background jobs (`lib/agents`), not during render.
+- Auth is last. Do not add login, sessions, or user models until that phase.
+- Map style is built in `lib/geo/mapStyle.ts` (Protomaps black flavor). Tile source is env-configured.
+- Keep feature logic in `features/*`. Phase 0 has no product logic.
