@@ -31,3 +31,5 @@ pnpm dev
 | `pnpm build` | Production build |
 
 See `docs/ROADMAP.md` and `docs/DECISIONS.md`.
+
+<!-- Git push test: 09/21/2026 18:37:18 -->
